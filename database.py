@@ -7,7 +7,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey,DateTime
 from datetime import datetime # small letters
 
 Base =declarative_base()
-
+# object relationn mapping
 class User(Base):
     __tablename__ = 'users'
     id = Column(Integer,primary_key=True)
@@ -22,6 +22,18 @@ class Message(Base):
     user_id = Column(Integer,ForeignKey('users.id'))
     message = Column(String(255))
     created_at = Column(DateTime, default=datetime.now)
+
+#utility functions
+
+def get_db():
+   engine = create_engine('sqlite:///example.db')  
+   return sessionmaker(bind= engine)()  
+
+def save_to_db(object):
+    db = get_db()   # open databse
+    db.add(object)   #insert object
+    db.commit()     # save change
+    db.close()      # close database
 
 
 #create database
