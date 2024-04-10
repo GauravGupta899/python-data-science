@@ -23,6 +23,22 @@ class Message(Base):
     message = Column(String(255))
     created_at = Column(DateTime, default=datetime.now)
 
+class Imageupload(Base):
+    __tablename__ = 'image_upload'
+    id = Column(Integer,primary_key=True)
+    __path__= Column(String(255))
+    user_id =Column(Integer, ForeignKey('users.id'))
+    created_at = Column(DateTime, default=datetime.now)
+
+class Post(Base):
+    __tablename__ = 'posts'
+    id = Column(Integer,primary_key=True)
+    title =Column(String(255))
+    content=Column(String)
+    user_id =Column(Integer, ForeignKey('users.id'))
+    created_at = Column(DateTime, default=datetime.now) 
+
+
 #utility functions
 
 def get_db():
