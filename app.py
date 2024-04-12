@@ -30,7 +30,24 @@ def add_user():
 
 @app.route('/add/message', methods=['GET', 'POST'])
 def add_message():
-    return render_template('add_message.html')
+        status= None
+        if request.method == "POST":
+           user_id = request.form.get('user_id')
+           message= request.form.get('message')
+        
+           if user_id and message:
+              
+              u = Message(user_id= user_id , message= message)
+              try:
+                  save_to_db(u)
+                  status ="Message added successfully"
+              except Exception as e:
+                status= f"Error: {e}" 
+           else:
+               
+               status = "Please fill all the fields"
+                        
+        return render_template('add_message.html',status=status)
 
 if __name__ == '__main__':
   app.run(host='127.0.0.1', port=8000, debug=True)

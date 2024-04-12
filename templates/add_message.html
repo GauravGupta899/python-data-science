@@ -16,7 +16,36 @@
     <header>
         <!-- place navbar here -->
     </header>
-    <main></main>
+    <main>
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-4 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="" method="post">
+                                <h3>Add message</h3>
+                                {% if status %}
+                                <span class="badge bg-primary">{{status}}</span>
+                                {% endif %}
+                                <div class="mb-3">
+                                    <input type="test" name="user_id" id="user_id" class="form-control"
+                                        placeholder="user_id">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" name="message" id="message" class="form-control"
+                                        placeholder="message">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <button class="btn btn-primary">Add Message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     <footer>
         <!-- place footer here -->
     </footer>
